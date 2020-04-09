@@ -2,7 +2,6 @@
   <div id="home">
     <div class="hero-text">
       <h2>Vue.jsで始めるSPA</h2>
-      <h2>Vue.jsで始めるSPA</h2>
     </div>
   </div>
 </template>

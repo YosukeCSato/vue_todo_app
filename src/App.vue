@@ -9,6 +9,9 @@
           <li>
             <router-link to="/search_ip">Search IP</router-link>
           </li>
+          <li>
+            <router-link to="/shopping">Shopping</router-link>
+          </li>
         </div>
       </ul>
       <router-view class="main" />

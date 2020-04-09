@@ -14,7 +14,7 @@ export default {
   name: "SearchIp",
   data() {
     return {
-      ip: "ここにipが表示されます。"
+      ip: "ここにIP addressが表示されます。"
     };
   },
   methods: {
