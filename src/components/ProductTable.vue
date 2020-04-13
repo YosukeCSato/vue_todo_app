@@ -63,7 +63,6 @@ export default {
     computedProducts() {
       return this.products.filter(el => {
         var option = this.current < 0 ? true : this.current === el.state;
-        console.log(this.current);
         return option;
       }, this);
     },

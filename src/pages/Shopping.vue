@@ -1,8 +1,12 @@
 <template>
-  <div class="text">
+  <div :class="$style.text">
     <p>ショッピング！！！！！</p>
-    <AddProductSection class="add-section" />
-    <ProductTable class="table" :products="products" />
+    <p :class="$style.text__text">{{ introduceAhan }}</p>
+    <input type="number" v-model="rails" />
+    <input type="submit" value="送信" @click="click" />
+    <p>{{ post }}</p>
+    <AddProductSection :class="$style['text__add-section']" />
+    <ProductTable :class="$style.text__table" :products="products" />
   </div>
 </template>
 
@@ -18,15 +22,43 @@ export default {
   },
   data() {
     return {
-      products: []
+      products: [],
+      ahan: "",
+      rails: "こんにちは",
+      post: ""
     };
+  },
+  methods: {
+    click() {
+      this.$axios
+        .post("http://localhost:3000/hello/index")
+        .then(response => {
+          this.post = response.data;
+        })
+        .catch(reason => {
+          this.post = "失敗!!!!!!!";
+        });
+    }
+  },
+  computed: {
+    introduceAhan() {
+      this.$axios
+        .get(`http://localhost:3000/hello?msg=${this.rails}`)
+        .then(response => {
+          this.ahan = response.data;
+        })
+        .catch(reason => {
+          this.ahan = "失敗!!!!!!!";
+        });
+      return this.ahan;
+    }
   },
   mounted() {
     this.$axios
       .get("http://localhost:8080/fetchAllProducts")
       .then(response => {
         this.products = response.data;
-        console.log(response.data);
+        // console.log(response.data);
       })
       .catch(reason => {
         this.products = "失敗";
@@ -41,14 +73,18 @@ export default {
   color: #ffffff;
   justify-content: center;
 
-  .add-section {
-    color: red;
+  &__add-section {
+    color: pink;
     font-weight: bold;
   }
 
-  .table {
-    color: red;
+  &__table {
+    color: white;
     font-weight: bold;
+  }
+
+  &__text {
+    border-bottom: 1px solid #ffffff;
   }
 }
 </style>
